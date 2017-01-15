@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
+import MDSpinner from 'react-md-spinner'
 
 
 function Movie( movie, channel ) {
@@ -37,7 +38,7 @@ class Movies extends Component {
     super(props)
 
     this.state = { 
-      loading: true
+      loading: false
     }
   }
 
@@ -47,26 +48,26 @@ class Movies extends Component {
 
   _onRefresh() {
     this.setState({ loading: true })
-    this.props.actions.fetchMovies(this.props.tab, (function(){
+    this.props.actions.goToTab(this.props.tab, (function(){
       this.setState({ loading: false })
     }).bind(this))
   }
 
   render() {
 
-    const movies = (
-      <div className="card-group d-flex flex-row flex-wrap justify-content-center">
-        { this.props.movies.map((movie) => {
-          return (
-            <div className="d-flex" key={movie.idChaine}>
-              {Movie(movie.list[0], movie)}
-            </div>
-          )
-        }) }
-      </div>
-    )
+    const output = this.state.loading
+      ? <div className="spinner"><MDSpinner /></div>
+      : <div className="card-group d-flex flex-row flex-wrap justify-content-center">
+          { this.props.movies.map((movie) => {
+            return (
+              <div className="" key={movie.idChaine}>
+                {Movie(movie.list[0], movie)}
+              </div>
+            )
+          }) }
+        </div>
 
-    return movies
+    return output
   } 
 
 }

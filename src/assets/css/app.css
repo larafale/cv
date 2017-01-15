@@ -1,14 +1,21 @@
 .app {
-  margin: 0;
-  padding: 0;
-  background: #282537;
-  background-image: radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+  
+}
+
+.ui_particles {
+  height: 260px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
 }
 
 .header {
   text-align: center;
   padding: 50px;
   color: #fff;
+  position: relative;
+  z-index: 2;
 }
 
 .tabs {
@@ -20,6 +27,7 @@
 }
 
 .movie {
+  margin-bottom: 20px;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -32,6 +40,11 @@
 }
 
 .movie .card-footer {
+}
+
+.spinner {
+  text-align: center;
+  padding: 100px;
 }
 
 

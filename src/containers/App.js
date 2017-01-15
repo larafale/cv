@@ -14,10 +14,15 @@ import Auth from '../services/auth'
 /* css */
 import '../assets/css/index.css';
 import '../assets/css/app.css';
-
+import initParticles from '../assets/lib/particles';
 
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log('App is mounted')
+    initParticles()
+  }
 
   login() {
     Auth.login()
@@ -27,10 +32,21 @@ class App extends Component {
 
     return <div className="app container-fluid">
 
+      <div id="ui_particles" className="ui_particles"></div>
+
       {/* header */}
       <div className="header">
-        <h1>What's on TV</h1>
 
+        <button 
+          type="button" 
+          onClick={this.login} 
+          className="btn btn-sm btn-outline-secondary pointer"
+        >Login</button>
+
+        <br />
+        <br />
+
+        <h1>What's on TV</h1>
 
         {/* menu */}
         <div className="tabs">
@@ -51,9 +67,6 @@ class App extends Component {
   } 
 
 }
-
-
-
 
 
 function mapStateToProps(state, ownProps) {

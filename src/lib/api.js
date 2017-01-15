@@ -1,3 +1,5 @@
+import dateFormat from 'dateformat'
+
 
 export default class Api {
   static headers() {
@@ -39,5 +41,22 @@ export default class Api {
       }
       return json.then(err => {throw err});
     }).then( json => json );
+  }
+  
+
+  static getMovies(type) {
+
+    const today = dateFormat(new Date(), "yyyy-mm-dd")
+
+    const types = {
+      early: `/1326279455-10/getPrime/?date=${today}&periode=prime1&bouquetId=2`,
+      late: `/1326279455-10/getPrime/?date=${today}&periode=prime2&bouquetId=2`,
+      now: `/1326279455-10/getEnCeMoment/?bouquetId=2`
+    }
+
+    const uri = types[type || 'early']
+    // const params = [''].join('&')  
+
+    return this.get(uri)
   }
 }

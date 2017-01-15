@@ -1,6 +1,5 @@
 import * as types from './types'
 import Api from '../lib/api'
-import dateFormat from 'dateformat'
 
 /*export function fetchRecipes(ingredients) {
   return (dispatch, getState) => {
@@ -16,41 +15,8 @@ import dateFormat from 'dateformat'
   }
 }*/
 
-export function _fetchMovies(type) {
 
-  const today = dateFormat(new Date(), "yyyy-mm-dd")
-
-  const types = {
-    early: `/1326279455-10/getPrime/?date=${today}&periode=prime1&bouquetId=2`,
-    late: `/1326279455-10/getPrime/?date=${today}&periode=prime2&bouquetId=2`,
-    now: `/1326279455-10/getEnCeMoment/?bouquetId=2`
-  }
-
-  const uri = types[type || 'early']
-  // const params = [''].join('&')  
-
-  return Api.get(uri)
-}
-
-export function fetchMovies(type, callback) {
-  return (dispatch, getState) => {
-    
-    _fetchMovies(type).then(res => {
-
-      dispatch({
-        type: types.SET_MOVIES,
-        movies: res.data
-      })
-
-      callback && callback()
-
-    }).catch( (ex) => {
-      console.log(ex)
-    })
-  }
-}
-
-export function goToTab(index) {
+export function goToTab(index, callback = () => {}) {
   return (dispatch, getState) => {
     
     dispatch({
@@ -58,12 +24,14 @@ export function goToTab(index) {
       tab: index
     })
 
-    _fetchMovies(index).then(res => {
+    Api.getMovies(index).then(res => {
 
       dispatch({
         type: types.SET_MOVIES,
         movies: res.data
       })
+
+      callback()
 
     }).catch( (ex) => {
       console.log(ex)

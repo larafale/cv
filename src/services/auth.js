@@ -13,11 +13,12 @@ export default new Auth(
       },
     },
 
-    // language: 'fr',
-    // languageDictionary: {
-    //   title: "my app",
-    //   signUpTerms: "I agree to the <a href='/terms' target='_new'>terms of service</a> and <a href='/privacy' target='_new'>privacy policy</a>."
-    // },
+    allowSignUp: false,
+    language: 'fr',
+    languageDictionary: {
+      title: "woTV",
+      // signUpTerms: "I agree to the <a href='/terms' target='_new'>terms of service</a> and <a href='/privacy' target='_new'>privacy policy</a>."
+    },
 
     // socialButtonStyle: 'small',
     // initialScreen: "signUp", // "login" or "forgotPassword"

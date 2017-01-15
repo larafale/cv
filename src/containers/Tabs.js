@@ -17,7 +17,8 @@ export default function Tabs({ tab, onClick }) {
           <button
             key={key}
             onClick={() => onClick(key)} 
-            className={'btn btn-primary pointer'+(tab === key ? '':' active')}
+            style={{boxShadow: 'none'}}
+            className={'btn btn-primary pointer'+(tab === key ? ' active':'')}
           >
             <i name="sidebar" />
             <span>{title}</span>
